@@ -33,6 +33,20 @@
             justify-content: center;
             height: 70vh; /* Adjusted height for more vertical space */
         }
+<div class="video-container">
+    <div id="player2"></div>
+    <div id="videoOverlay2" class="video-overlay"></div> <!-- Overlay for 2nd video -->
+</div>
+
+<div class="video-container">
+    <div id="player3"></div>
+    <div id="videoOverlay3" class="video-overlay"></div> <!-- Overlay for 3rd video -->
+</div>
+
+<div class="video-container">
+    <div id="player4"></div>
+    <div id="videoOverlay4" class="video-overlay"></div> <!-- Overlay for 4th video -->
+</div>
 
         /* Set the dimensions for the player */
         #player {
@@ -404,6 +418,111 @@
                 }
             });
         }
+// Initialize multiple YouTube players
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+        videoId: '2O1nW_KzVEo', // Replace with your video ID
+        playerVars: {
+            'autoplay': 0,
+            'controls': 0,
+            'cc_load_policy': 1, // Turn on captions
+            'modestbranding': 1,
+            'rel': 0,
+            'showinfo': 0,
+            'mute': 1 // Start muted
+        },
+        events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+        }
+    });
+
+    // Add second player
+    player2 = new YT.Player('player2', {
+        videoId: 'dQw4w9WgXcQ', // Replace with second video ID
+        playerVars: {
+            'autoplay': 0,
+            'controls': 0,
+            'cc_load_policy': 1,
+            'modestbranding': 1,
+            'rel': 0,
+            'showinfo': 0,
+            'mute': 1
+        },
+        events: {
+            'onReady': onPlayerReady2,
+            'onStateChange': onPlayerStateChange2
+        }
+    });
+
+    // Add third player
+    player3 = new YT.Player('player3', {
+        videoId: 'L_jWHffIx5E', // Replace with third video ID
+        playerVars: {
+            'autoplay': 0,
+            'controls': 0,
+            'cc_load_policy': 1,
+            'modestbranding': 1,
+            'rel': 0,
+            'showinfo': 0,
+            'mute': 1
+        },
+        events: {
+            'onReady': onPlayerReady3,
+            'onStateChange': onPlayerStateChange3
+        }
+    });
+
+    // Add fourth player
+    player4 = new YT.Player('player4', {
+        videoId: 'eVTXPUF4Oz4', // Replace with fourth video ID
+        playerVars: {
+            'autoplay': 0,
+            'controls': 0,
+            'cc_load_policy': 1,
+            'modestbranding': 1,
+            'rel': 0,
+            'showinfo': 0,
+            'mute': 1
+        },
+        events: {
+            'onReady': onPlayerReady4,
+            'onStateChange': onPlayerStateChange4
+        }
+    });
+}
+
+// Functions to handle the additional players
+function onPlayerReady2(event) {
+    // Add control functionalities for player2
+}
+
+function onPlayerReady3(event) {
+    // Add control functionalities for player3
+}
+
+function onPlayerReady4(event) {
+    // Add control functionalities for player4
+}
+
+// Add event listener functions for the state changes for each player
+function onPlayerStateChange2(event) {
+    if (event.data === YT.PlayerState.PLAYING) {
+        // Handle playing state for player2
+    }
+}
+
+function onPlayerStateChange3(event) {
+    if (event.data === YT.PlayerState.PLAYING) {
+        // Handle playing state for player3
+    }
+}
+
+function onPlayerStateChange4(event) {
+    if (event.data === YT.PlayerState.PLAYING) {
+        // Handle playing state for player4
+    }
+}
 
         // Function to handle player events when the player is ready
         function onPlayerReady(event) {
