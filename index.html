@@ -479,15 +479,7 @@
                 blackout.style.display = 'flex'; // Show blackout when paused
                 videoOverlay.style.backgroundColor = 'rgba(0, 0, 0, 1)'; // Opaque while paused
             } else if (event.data === YT.PlayerState.BUFFERING) {
-                // Show loading and mute during buffering
-                blackout.style.display = 'flex'; // Show blackout with "Loading..."
-                player.mute(); // Mute while buffering
-            } else if (event.data === YT.PlayerState.PLAYING) {
-                blackout.style.display = 'none'; // Hide blackout when playing
-                videoOverlay.style.backgroundColor = 'rgba(0, 0, 0, 0)'; // Transparent while playing
-            }
-        }
-        // Reference to the time slider
+               // Reference to the time slider
 const timeSlider = document.getElementById('timeSlider');
 
 // Update slider position as the video plays
@@ -514,6 +506,15 @@ timeSlider.addEventListener('input', function() {
     player.seekTo(seekTime, true); // Jump to the selected time
 });
 
+ // Show loading and mute during buffering
+                blackout.style.display = 'flex'; // Show blackout with "Loading..."
+                player.mute(); // Mute while buffering
+            } else if (event.data === YT.PlayerState.PLAYING) {
+                blackout.style.display = 'none'; // Hide blackout when playing
+                videoOverlay.style.backgroundColor = 'rgba(0, 0, 0, 0)'; // Transparent while playing
+            }
+        }
+        
 
         // Chatbot Functionality with Together API
         async function sendMessage() {
