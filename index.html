@@ -303,7 +303,7 @@
 
     <!-- Main Content -->
     <div class="video-container">
-        
+
         <div id="player"></div>
         <div id="videoOverlay" class="video-overlay"></div> <!-- Permanent Overlay -->
         <div id="initialOverlay" class="initial-overlay"></div> <!-- Initial Black Overlay -->
@@ -320,6 +320,9 @@
         <button id="unmuteButton" aria-label="Unmute Video">Unmute</button>
         <div class="time-display" id="timeDisplay">0:00 / 0:00</div>
     </div>
+<div class="slider-container" style="width: 75%; margin-top: 20px;">
+    <input type="range" id="timeSlider" min="0" max="100" value="0" step="1" style="width: 100%;" />
+</div>
 
     <!-- Chatbot Section -->
     <div id="chatbox">
@@ -346,7 +349,7 @@
             This is demo lecture by Your Indian  Professor .  
         </p>
         <h2>🗓️ Full Course soon</h2>
-        
+
     <!-- Load YouTube IFrame API -->
     <script src="https://www.youtube.com/iframe_api"></script>
 
@@ -484,6 +487,33 @@
                 videoOverlay.style.backgroundColor = 'rgba(0, 0, 0, 0)'; // Transparent while playing
             }
         }
+        // Reference to the time slider
+const timeSlider = document.getElementById('timeSlider');
+
+// Update slider position as the video plays
+player.addEventListener('onStateChange', function(event) {
+    if (event.data === YT.PlayerState.PLAYING) {
+        updateSlider();
+    }
+});
+
+function updateSlider() {
+    setInterval(function() {
+        if (player && player.getDuration) {
+            let currentTime = player.getCurrentTime();
+            let duration = player.getDuration();
+            timeSlider.max = duration; // Set the max value of the slider to the video duration
+            timeSlider.value = currentTime; // Update the slider position to current time
+        }
+    }, 1000); // Update slider every second
+}
+
+// Change video time based on slider input
+timeSlider.addEventListener('input', function() {
+    let seekTime = timeSlider.value; 
+    player.seekTo(seekTime, true); // Jump to the selected time
+});
+
 
         // Chatbot Functionality with Together API
         async function sendMessage() {
@@ -558,6 +588,7 @@
                 .replace(/\n/g, '<br>'); // Replace \n with <br> for line breaks
             return formatted;
         }
+        
     </script>
 </body>
 </html>
