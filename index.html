@@ -368,22 +368,9 @@
     <script src="https://www.youtube.com/iframe_api"></script>
 
     <script>
-        const validUsers = ['rohit', 'utkarsh', 'anita', 'arunima', 'bisheline'];
+       
 
-        // Function to handle login
-        function login() {
-            const username = document.getElementById('username').value.trim().toLowerCase();
-            const password = document.getElementById('password').value.trim().toLowerCase();
-            const error = document.getElementById('error');
-
-            if (validUsers.includes(username) && username === password) {
-                document.getElementById('loginOverlay').style.display = 'none'; // Hide login overlay
-                document.getElementById('controlsContainer').style.display = 'flex'; // Show controls
-            } else {
-                error.textContent = "Invalid Username or Password!";
-            }
-        }
-
+     
         // Variables to hold the player and control buttons
         let player;
         const playButton = document.getElementById('playButton');
